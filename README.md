@@ -298,6 +298,8 @@ You may need to manually install missing softwares.
 
 ### FreeBSD
 
+#### Build from ports
+
 ```bash
 su
 cd /usr/ports/net/shadowsocks-libev
@@ -316,6 +318,25 @@ Start the Shadowsocks server:
 
 ```bash
 service shadowsocks_libev start
+```
+
+#### Build from recent source
+
+```
+pkg install libev udns mbedtls libsodium autoconf automake libtool c-ares gmake asciidoc xmlto
+git clone https://github.com/shadowsocks/shadowsocks-libev.git
+cd shadowsocks-libev
+git submodule update --init --recursive
+./autogen.sh
+./configure
+cd doc
+gmake
+cd ..
+make
+
+sudo make install
+# or
+cp src/ss-* ~/bin
 ```
 
 ### OpenWRT
